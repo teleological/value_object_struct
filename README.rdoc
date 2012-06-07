@@ -1,0 +1,43 @@
+= ValueObject
+
+The ValueObject module uses Ruby's native Struct class to facilitate the
+declaration of immutable value object classes.
+
+Value object classes are defined with ValueObject.class_with_attributes
+and a list of member attributes specified by Symbol. Like Struct classes,
+they may be assigned to a constant or variable, or used as a superclass
+by another class.
+
+Value object instances are Struct instances with private attribute write
+access, including both named attribute writers and Hash or Array style
+bracketed subscript assignment. An instance may be frozen to prohibit
+even private reassignment of attributes.
+
+Value object instances do not enforce immutability of attribute values
+themselves, so it may be desirable to freeze mutable value types such
+as String, Array and Hash before using them to initialize an instance.
+
+As Struct instances, value object instances provide equality and hash
+semantics via #== and #hash.
+
+== Example
+
+  class Address < ValueObject.class_with_attributes(:street,:zip); end
+  address = Address.new(street: "123 Main", zip: 11211)
+  
+  address.street   = "123 Maple" # raises NoMethodError
+  address[:street] = "456 Elm"   # raises NoMethodError
+  address[1]        = "789 Pine" # raises NoMethodError
+  
+  address == Address.new(street: "123 Main", zip: 11211)  # => true
+  address == Address.new(street: "123 Maple", zip: 11211) # => false
+  
+  set = Set[address]
+  set.include? Address.new(street: "123 Main", zip: 11211) # => true
+  set.include? Address.new(street: "123 Main", zip: 11212) # => false
+
+== Copyright
+
+Copyright (c) 2012 Riley Lynch, Teleological Software, LLC.
+See LICENSE.txt for further details.
+
