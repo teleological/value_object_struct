@@ -19,25 +19,52 @@ describe ValueObject do
 
   context "as a Struct subclass" do
 
-    it "initializes an instance for a hash argument" do
-      instance = object_class.new(:foo => "bar", :baz => "qux")
-      instance[:foo].should == "bar"
-      instance.baz.should == "qux"
+    context "initialized with a hash" do
+
+      it "initializes members from named argument" do
+        instance = object_class.new(foo: "bar", baz: "qux")
+        instance[:foo].should == "bar"
+        instance.baz.should == "qux"
+      end
+
+      it "leaves members omitted from constructor hash nil" do
+        instance = object_class.new(foo: "bar")
+        instance.baz.should be_nil
+      end
+
     end
 
-    it "leaves members omitted from constructor hash nil" do
-      instance = object_class.new(:foo => "bar")
-      instance.baz.should be_nil
+    context "initialized without arguments" do
+
+      it "returns a null object" do
+        instance = object_class.new()
+        instance.members.each {|m| instance[m].should be_nil}
+      end
+
     end
 
-    it "returns a null object for nil constructor argument" do
-      instance = object_class.new()
-      instance.members.each {|m| instance[m].should be_nil}
+    describe ".for_values" do
+
+      it "initializes attributes in members order" do
+        instance = object_class.for_values("bar","qux")
+        instance[:foo].should == "bar"
+        instance.baz.should == "qux"
+      end
+
+      context "without arguments" do
+
+        it "returns a null object" do
+          instance = object_class.for_values
+          instance.members.each {|m| instance[m].should be_nil}
+        end
+
+      end
+
     end
 
     context "given an instance" do
 
-      let(:instance) { object_class.new(:foo => "bar") }
+      let(:instance) { object_class.new(foo: "bar") }
 
       it "privatizes member setters" do
         lambda { instance.bar = "quxx" }.should raise_error(NoMethodError)

@@ -27,7 +27,7 @@ semantics via #== and #hash.
   
   address.street   = "123 Maple" # raises NoMethodError
   address[:street] = "456 Elm"   # raises NoMethodError
-  address[1]        = "789 Pine" # raises NoMethodError
+  address[1]       = "789 Pine"  # raises NoMethodError
   
   address == Address.new(street: "123 Main", zip: 11211)  # => true
   address == Address.new(street: "123 Maple", zip: 11211) # => false
