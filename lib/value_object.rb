@@ -22,7 +22,8 @@ module ValueObject
   #
   # Value object instances are Struct instances with private attribute
   # write access, including both named attribute writers and Hash or
-  # Array style bracketed subscript assignment.
+  # Array style bracketed subscript assignment. If all attribute values
+  # are nil, the value object is considered empty.
 
   def self.class_with_attributes(*attributes)
     Struct.new(*attributes).tap do |klass|
@@ -37,6 +38,10 @@ module ValueObject
           attributes = {}
           members.each_with_index { |m,i| attributes[m] = values[i] }
           new(attributes)
+        end
+
+        def empty?
+          values.all?(&:nil?)
         end
 
         private :[]=
