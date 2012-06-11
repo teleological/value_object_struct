@@ -18,7 +18,8 @@ themselves, so it may be desirable to freeze mutable value types such
 as String, Array and Hash before using them to initialize an instance.
 
 As Struct instances, value object instances provide equality and hash
-semantics via #== and #hash.
+semantics via #== and #hash. #empty? returns true for value object
+instances with no non-nil attribute values.
 
 == Example
 
