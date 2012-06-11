@@ -64,14 +64,30 @@ describe ValueObject do
 
     context "given an instance" do
 
-      let(:instance) { object_class.new(foo: "bar") }
+      context "with initialized attributes" do
 
-      it "privatizes member setters" do
-        lambda { instance.bar = "quxx" }.should raise_error(NoMethodError)
+        let(:instance) { object_class.new(foo: "bar") }
+
+        it "privatizes member setters" do
+          lambda { instance.bar = "quxx" }.
+            should raise_error(NoMethodError)
+        end
+
+        it "privatizes hash write access" do
+          lambda { instance[:bar] = "quxx" }.
+            should raise_error(NoMethodError)
+        end
+
       end
 
-      it "privatizes hash write access" do
-        lambda { instance[:bar] = "quxx" }.should raise_error(NoMethodError)
+      context "without initialized attributes" do
+
+        let(:instance) { object_class.new() }
+
+        it "is considered empty" do
+          instance.should be_empty
+        end
+
       end
 
     end

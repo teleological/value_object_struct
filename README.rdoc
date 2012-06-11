@@ -5,8 +5,8 @@ declaration of immutable value object classes.
 
 Value object classes are defined with ValueObject.class_with_attributes
 and a list of member attributes specified by Symbol. Like Struct classes,
-they may be assigned to a constant or variable, or used as a superclass
-by another class.
+they may be assigned to a constant or variable, or used in a superclass
+declaration.
 
 Value object instances are Struct instances with private attribute write
 access, including both named attribute writers and Hash or Array style
