@@ -44,6 +44,12 @@ module ValueObject
           values.all?(&:nil?)
         end
 
+        def attributes
+          members.each_with_object({}) { |m,h| h[m.to_s] = self[m] }
+        end
+
+        alias_method :attribute, :[]
+
         private :[]=
 
         private #{attributes.map {|attr| ":" + attr.to_s + "=" }.join(", ")}
