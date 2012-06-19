@@ -3,23 +3,29 @@
 The ValueObject module uses Ruby's native Struct class to facilitate the
 declaration of immutable value object classes.
 
-Value object classes are defined with ValueObject.class_with_attributes
+ValueObject classes are defined with ValueObject.class_with_attributes
 and a list of member attributes specified by Symbol. Like Struct classes,
 they may be assigned to a constant or variable, or used in a superclass
 declaration.
 
-Value object instances are Struct instances with private attribute write
+ValueObject instances are Struct instances with private attribute write
 access, including both named attribute writers and Hash or Array style
-bracketed subscript assignment. An instance may be frozen to prohibit
-even private reassignment of attributes.
+bracketed subscript assignment. ValueObject instances created with
+::value (as opposed to ::new or ::for_values) are frozen, so that
+attribute values may not be reassigned after initialization, even by
+private methods.
 
-Value object instances do not enforce immutability of attribute values
+ValueObject instances do not enforce immutability of attribute values
 themselves, so it may be desirable to freeze mutable value types such
 as String, Array and Hash before using them to initialize an instance.
 
-As Struct instances, value object instances provide equality and hash
+As Struct instances, ValueObject instances provide equality and hash
 semantics via #== and #hash. #empty? returns true for value object
 instances with no non-nil attribute values.
+
+ValueObject instances provide an #attributes and #attribute method
+for compatibility with ActiveModel. #attributes returns a hash
+representation of attribute values. #attribute is an alias for #[].
 
 == Example
 
