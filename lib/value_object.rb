@@ -16,9 +16,11 @@ module ValueObject
   # initialized are set to the default value of the initializing
   # Hash (usually nil).
   #
-  # The class also provides a factory method, ::for_values, which
+  # The class also provides two factory methods: ::for_values, which
   # accepts an ordered list of attribute values like the Struct class
-  # constructor.
+  # constructor, and ::value, which accepts a hash of attribute value
+  # assignments, constructs the value object, and then freezes it
+  # before returning it.
   #
   # Value object instances are Struct instances with private attribute
   # write access, including both named attribute writers and Hash or
@@ -28,6 +30,10 @@ module ValueObject
   def self.class_with_attributes(*attributes)
     Struct.new(*attributes).tap do |klass|
       klass.class_eval <<-"RUBY", __FILE__, __LINE__
+
+        def self.value(attributes={})
+          new(attributes).freeze
+        end
 
         def initialize(attributes={})
           values = members.map { |m| attributes[m] }
