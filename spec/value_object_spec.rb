@@ -62,6 +62,20 @@ describe ValueObject do
 
     end
 
+    describe ".value" do
+
+      it "initializes members from named argument" do
+        instance = object_class.value(foo: "bar", baz: "qux")
+        instance[:foo].should == "bar"
+        instance.baz.should == "qux"
+      end
+
+      it "returns a frozen object" do
+        object_class.value(foo: "bar", baz: "qux").should be_frozen
+      end
+
+    end
+
     context "given an instance" do
 
       let(:instance) { object_class.new(foo: "bar") }

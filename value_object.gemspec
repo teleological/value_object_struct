@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "value_object"
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Riley Lynch"]
-  s.date = "2012-06-18"
+  s.date = "2012-06-19"
   s.description = "Immutable value objects using Ruby Structs"
   s.extra_rdoc_files = [
     "LICENSE.txt",
