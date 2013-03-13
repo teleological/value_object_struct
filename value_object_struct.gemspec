@@ -4,12 +4,12 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "value_object"
-  s.version = "0.5.1"
+  s.name = "value_object_struct"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Riley Lynch"]
-  s.date = "2012-06-19"
+  s.date = "2013-03-13"
   s.description = "Immutable value objects using Ruby Structs"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -22,15 +22,15 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "lib/value_object.rb",
+    "lib/value_object_struct.rb",
     "spec/spec_helper.rb",
-    "spec/value_object_spec.rb",
-    "value_object.gemspec"
+    "spec/value_object_struct_spec.rb",
+    "value_object_struct.gemspec"
   ]
-  s.homepage = "http://github.com/teleological/value_object"
+  s.homepage = "http://github.com/teleological/value_object_struct"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "1.8.23"
   s.summary = "Immutable value objects"
 
   if s.respond_to? :specification_version then

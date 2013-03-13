@@ -13,8 +13,8 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  gem.name = "value_object"
-  gem.homepage = "http://github.com/teleological/value_object"
+  gem.name = "value_object_struct"
+  gem.homepage = "http://github.com/teleological/value_object_struct"
   gem.license = "MIT"
   gem.summary = %Q{Immutable value objects}
   gem.description = %Q{Immutable value objects using Ruby Structs}
@@ -37,6 +37,6 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-  rdoc.title = "value_object #{version}"
+  rdoc.title = "value_object_struct #{version}"
 end
 

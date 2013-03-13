@@ -1,11 +1,11 @@
 
-# The ValueObject module provides the ValueObject.class_with_attributes
-# method for defining immutable value object classes based on ruby's
-# Struct class.
+# The ValueObjectStruct module provides the
+# ValueObjectStruct.class_with_attributes method for defining immutable
+# value object classes based on ruby's Struct class.
 
-module ValueObject
+module ValueObjectStruct
 
-  # ValueObject.class_with_attributes accepts a list of member
+  # ValueObjectStruct.class_with_attributes accepts a list of member
   # attributes specified by Symbol and returns a Class that
   # inherits from a Struct class defined with those attributes.
   #
